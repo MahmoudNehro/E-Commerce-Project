@@ -4,9 +4,12 @@ use App\Http\Controllers\Dashboard\Blog\BlogController;
 use App\Http\Controllers\Dashboard\General\ContactUsController;
 use App\Http\Controllers\Dashboard\General\CouponController;
 use App\Http\Controllers\Dashboard\Product\CategoryController;
+use App\Http\Controllers\Dashboard\Product\ProductController;
+use App\Http\Controllers\Dashboard\Product\ProductInventoryController;
 use App\Http\Controllers\Dashboard\User\Permission\PermissionController;
 use App\Http\Controllers\Dashboard\User\Role\RoleController;
 use App\Http\Controllers\Dashboard\User\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -37,6 +40,10 @@ Route::group(
         Route::resource('categories', CategoryController::class);
         Route::resource('contact-us', ContactUsController::class)->only('index');
         Route::resource('coupons', CouponController::class);
+        Route::resource('products', ProductController::class);
+        Route::get('product-histories/{id}', [ProductInventoryController::class, 'index'])->name('product-histories.index');
+        Route::get('product-histories/{id}/create', [ProductInventoryController::class, 'create'])->name('product-histories.create');
+        Route::post('product-histories', [ProductInventoryController::class, 'store'])->name('product-histories.store');
     }
 );
 

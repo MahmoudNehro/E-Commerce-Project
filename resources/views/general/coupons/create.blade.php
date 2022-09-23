@@ -31,12 +31,18 @@
         <form method="POST" action="{{ route('coupons.store') }}">
             @csrf
             <div class="mb-10 form-check form-switch form-check-custom form-check-solid">
-                <input class="form-check-input" type="checkbox" value="1" name="active" id="flexSwitchDefault" />
-                <input class="form-check-input" type="hidden" value="0" name="active" id="flexSwitchDefault" />
+
+                <input type="hidden" name="active" value="0">
+
+                <input class="form-check-input" value="1" name="active" type="checkbox" id="flexSwitchDefault" />
+
                 <label class="form-check-label" for="flexSwitchDefault">
+
                     Active
+
                 </label>
             </div>
+
             <div class="row">
                 <div class="mb-10 col-md-12">
                     <label for="amount" class="required form-label">Amount</label>

@@ -320,24 +320,24 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Forms</span>
+                                <span class="menu-title">Products</span>
                                 <span class="menu-arrow"></span>
                             </span>
                             <div class="menu-sub menu-sub-accordion menu-active-bg">
                                 <div class="menu-item">
-                                    <a class="menu-link" href="../../demo1/dist/modals/forms/new-target.html">
+                                    <a class="menu-link" href="{{ route('products.create') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">New Target</span>
+                                        <span class="menu-title">Create Product</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a class="menu-link" href="../../demo1/dist/modals/forms/new-card.html">
+                                    <a class="menu-link" href="{{ route('products.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
-                                        <span class="menu-title">New Card</span>
+                                        <span class="menu-title">All Products</span>
                                     </a>
                                 </div>
                                 <div class="menu-item">

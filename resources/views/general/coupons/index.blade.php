@@ -37,6 +37,7 @@
                         <th>Amount</th>
                         <th>Start At</th>
                         <th>End At</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -52,6 +53,7 @@
 
                             <td>{{ $coupon->start_at }}</td>
                             <td>{{ $coupon->end_at }}</td>
+                            <td><span class="{{$coupon->active ? 'badge badge-bill badge-success' : 'badge badge-bill badge-danger'}}">{{ $coupon->active ? 'Active' : 'Not Active' }} </span> </td>
                             <td class="text-begin">
 
                                 <a href="{{ route('coupons.show', ['coupon' => $coupon->id]) }}"
@@ -84,8 +86,8 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </a>
-                                <form action="{{ route('coupons.destroy', ['coupon' => $coupon->id]) }}"
-                                    method="POST" style="display: inline;">
+                                <form action="{{ route('coupons.destroy', ['coupon' => $coupon->id]) }}" method="POST"
+                                    style="display: inline;">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-danger btn-icon btn-bg-light btn-active-color-primary btn-sm"

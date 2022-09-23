@@ -30,13 +30,36 @@
         <form method="POST" action="{{ route('coupons.update', ['coupon' => $coupon->id]) }}">
             @csrf
             @method('put')
-            <div class="mb-10 form-check form-switch form-check-custom form-check-solid">
-                <input class="form-check-input" type="checkbox" value="1" name="active" id="flexSwitchDefault" />
-                <input class="form-check-input" type="hidden" value="0" name="active" id="flexSwitchDefault" />
-                <label class="form-check-label" for="flexSwitchDefault">
-                    Active
-                </label>
-            </div>
+            @if ($coupon->active == 1)
+                <div class=" mb-10 form-check form-switch form-check-custom form-check-solid">
+
+                    <input type="hidden" name="active" value="0">
+
+                    <input class="form-check-input" value="1" name="active" type="checkbox"
+                        id="flexSwitchDefault" checked />
+
+                    <label class="form-check-label" for="flexSwitchDefault">
+
+                        Active
+
+                    </label>
+
+                </div>
+            @elseif ($coupon->active == 0)
+                <div class=" mb-10 form-check form-switch form-check-custom form-check-solid">
+
+                    <input type="hidden" name="active" value="0" checked>
+
+                    <input class="form-check-input" value="1" name="active" type="checkbox" id="flexSwitchDefault" />
+    
+                    <label class="form-check-label" for="flexSwitchDefault">
+    
+                        Active
+    
+                    </label>
+
+                </div>
+            @endif
             <div class="row">
                 <div class="mb-10 col-md-12">
                     <label for="amount" class="required form-label">Amount</label>
@@ -59,8 +82,7 @@
                 <div class="mb-10 col-md-6">
                     <label for="end_at" class="required form-label">End At</label>
                     <input name="end_at" type="date" class="form-control form-control-solid" id="end_at"
-                        aria-describedby="titleHelp" placeholder="Enter coupon end date"
-                        value="{{ $coupon->end_at }}">
+                        aria-describedby="titleHelp" placeholder="Enter coupon end date" value="{{ $coupon->end_at }}">
 
                 </div>
 

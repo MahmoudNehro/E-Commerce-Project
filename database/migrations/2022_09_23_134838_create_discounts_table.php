@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('discounts', function (Blueprint $table) {
             $table->id();
-            $table->json('name');
-            $table->json('specifications')->nullable();
-            $table->json('description');
-            $table->double('price');
-            $table->foreignId('category_id')->constrained();
-            $table->integer('views')->nullable();
-            $table->boolean('active')->default(false);
+            $table->integer('precentage');
+            $table->string('discount_code')->unique();
+            $table->date('start_at');
+            $table->date('end_at');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('discounts');
     }
 };

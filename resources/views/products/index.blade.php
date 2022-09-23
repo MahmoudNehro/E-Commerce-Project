@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-    Blogs Index
+    Products Index
 @stop
 @endsection
 @section('page-header')
@@ -18,7 +18,7 @@
     <!--begin::Header-->
     <div class="card-header border-0 pt-5">
         <h3 class="card-title align-items-start flex-column">
-            <span class="card-label fw-bolder fs-3 mb-1">Blogs</span>
+            <span class="card-label fw-bolder fs-3 mb-1">Products</span>
         </h3>
 
     </div>
@@ -33,9 +33,9 @@
                 <thead>
                     <tr class="fw-bolder fs-6 text-gray-800 px-7">
                         <th>Id</th>
-                        <th>Blog Title</th>
-                        <th>Created At</th>
-                        <th>Created By</th>
+                        <th>Product Title</th>
+                        <th>Price</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -43,16 +43,18 @@
                     @php
                         $i = 1;
                     @endphp
-                    @foreach ($blogs as $blog)
+                    @foreach ($products as $product)
                         <tr>
                             <td>@php echo $i++; @endphp</td>
-                            <td>{{ $blog->title }}</td>
+                            <td>{{ $product->name }}</td>
 
-                            <td>{{ $blog->created_at->format('d-m-Y') }}</td>
-                            <td>{{ $blog->user?->name }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td><span
+                                    class="{{ $product->active ? 'badge badge-bill badge-success' : 'badge badge-bill badge-danger' }}">{{ $product->active ? 'Active' : 'Not Active' }}
+                                </span> </td>
+
                             <td class="text-begin">
-
-                                <a href="{{ route('blogs.show', ['blog' => $blog->id]) }}"
+                                <a href="{{ route('product-histories.index', ['id' => $product->id]) }}"
                                     class="btn btn-info btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                     <span class="svg-icon svg-icon-3">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -66,7 +68,21 @@
                                         </svg>
                                     </span>
                                 </a>
-                                <a href="{{ route('blogs.edit', ['blog' => $blog->id]) }}"
+                                <a href="{{ route('products.show', ['product' => $product->id]) }}"
+                                    class="btn btn-info btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <span class="svg-icon svg-icon-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z"
+                                                fill="black" />
+                                            <path opacity="0.3"
+                                                d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z"
+                                                fill="black" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <a href="{{ route('products.edit', ['product' => $product->id]) }}"
                                     class="btn btn-success btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                     <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                     <span class="svg-icon svg-icon-3">
@@ -82,8 +98,8 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </a>
-                                <form action="{{ route('blogs.destroy', ['blog' => $blog->id]) }}" method="POST"
-                                    style="display: inline;">
+                                <form action="{{ route('products.destroy', ['product' => $product->id]) }}"
+                                    method="POST" style="display: inline;">
                                     @method('delete')
                                     @csrf
                                     <button class="btn btn-danger btn-icon btn-bg-light btn-active-color-primary btn-sm"

@@ -30,13 +30,36 @@
         <form method="POST" action="{{ route('categories.update', ['category' => $category->id]) }}">
             @csrf
             @method('put')
-            <div class="mb-10 form-check form-switch form-check-custom form-check-solid">
-                <input class="form-check-input" type="checkbox" value="1" name="active" id="flexSwitchDefault" />
-                <input class="form-check-input" type="hidden" value="0" name="active" id="flexSwitchDefault" />
-                <label class="form-check-label" for="flexSwitchDefault">
-                    Active
-                </label>
-            </div>
+            @if ($category->active == '1')
+                <div class=" mb-10 form-check form-switch form-check-custom form-check-solid">
+
+                    <input type="hidden" name="active" value="0">
+
+                    <input class="form-check-input" type="checkbox" value="1" id="flexSwitchChecked"
+                        checked="checked" />
+
+                    <label class="form-check-label" for="flexSwitchChecked">
+
+                        Checked switch
+
+                    </label>
+
+                </div>
+            @elseif ($category->active == '0')
+                <div class=" mb-10 form-check form-switch form-check-custom form-check-solid">
+
+                    <input type="hidden" name="active" value="1">
+
+                    <input class="form-check-input" type="checkbox" value="0" id="flexSwitchDefault" />
+
+                    <label class="form-check-label" for="flexSwitchDefault">
+
+                        active
+
+                    </label>
+
+                </div>
+            @endif
             <div class="row">
                 <div class="mb-10 col-md-6">
                     <label for="name_ar" class="required form-label">Name</label>

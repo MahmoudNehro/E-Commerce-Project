@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('css')
-    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 
 @section('title')
     Categories
@@ -31,10 +30,15 @@
         <form method="POST" action="{{ route('categories.store') }}">
             @csrf
             <div class="mb-10 form-check form-switch form-check-custom form-check-solid">
-                <input class="form-check-input" type="checkbox" value="1" name="active" id="flexSwitchDefault" />
-                <input class="form-check-input" type="hidden" value="0" name="active" id="flexSwitchDefault" />
+
+                <input type="hidden" name="active" value="0">
+
+                <input class="form-check-input" value="1" name="active" type="checkbox" id="flexSwitchDefault" />
+
                 <label class="form-check-label" for="flexSwitchDefault">
+
                     Active
+
                 </label>
             </div>
             <div class="row">
@@ -89,6 +93,5 @@
 <!-- row closed -->
 @endsection
 @section('js')
-<script src="assets/plugins/global/plugins.bundle.js"></script>
 
 @endsection
